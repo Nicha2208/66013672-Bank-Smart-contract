@@ -1,0 +1,960 @@
+/*
+  NOTE: These styles are ALSO inlined directly in /index.html inside a
+  <style> block. The inline copy is what actually renders in the preview
+  (external stylesheet paths such as ./src/index.css do not resolve under
+  the preview serving root). This file is kept byte-for-byte consistent with
+  the inline CSS so there is never a stale or contradicting copy.
+*/
+
+:root {
+  --paper: #f8f7f3;
+  --paper-deep: #efeee7;
+  --surface: #ffffff;
+  --ink: #1a1a17;
+  --muted: #6f746a;
+  --faint: #9b9e94;
+  --line: #e6e4db;
+  --line-strong: #d5d2c6;
+  --accent: #1c6b4d;
+  --accent-ink: #124b36;
+  --accent-soft: #eef4f0;
+  --danger: #a53a24;
+  --danger-soft: #fbf2ef;
+  --radius: 4px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --pad-card: clamp(16px, 3.2vw, 28px);
+}
+
+/* ---------- reset: no element may exceed the viewport ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background: #f8f7f3;
+  color: #1a1a17;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100%;
+  font-family: "Inter", "Noto Sans Thai", "IBM Plex Sans Thai",
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #f8f7f3;
+  color: #1a1a17;
+}
+
+h1,
+h2,
+p,
+dl,
+dt,
+dd,
+ul,
+li,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+  max-width: 100%;
+}
+
+/* ---------- typography helpers ---------- */
+
+.mono {
+  font-family: "SF Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
+    "Liberation Mono", monospace;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  letter-spacing: -0.01em;
+}
+
+.label {
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.hint {
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.mt-12 {
+  margin-top: 12px;
+}
+
+.ink-faint {
+  color: var(--faint);
+}
+
+.ink-muted {
+  color: var(--muted);
+}
+
+.ink-danger {
+  color: var(--danger);
+}
+
+/* Thai glyphs need extra vertical room in display figures. */
+.display {
+  line-height: 1.06;
+  padding-bottom: 0.06em;
+}
+
+/* ---------- shell / layout ---------- */
+
+.shell {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #f8f7f3;
+  color: #1a1a17;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(22px, 4vw, 44px) var(--gutter) clamp(32px, 5vw, 56px);
+}
+
+.center-wrap {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gutter);
+  background: #f8f7f3;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+  flex: 1 1 200px;
+}
+
+.brand-copy {
+  min-width: 0;
+}
+
+.title {
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.sub {
+  margin-top: 2px;
+}
+
+.wallet {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 7px;
+  flex: 0 1 auto;
+  min-width: 0;
+  margin-left: auto;
+}
+
+.wallet-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+/* ---------- student identity + assignment coverage ---------- */
+
+.ident {
+  margin-top: clamp(16px, 2.6vw, 24px);
+  padding: clamp(13px, 2vw, 18px) clamp(14px, 2.4vw, 20px);
+  background: var(--surface);
+}
+
+.ident-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 18px;
+  min-width: 0;
+}
+
+.ident-main {
+  min-width: 0;
+  flex: 1 1 220px;
+}
+
+.ident-status {
+  flex: none;
+  font-size: 10.5px;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+}
+
+.ident-label {
+  flex: none;
+  color: var(--accent-ink);
+}
+
+.student-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 9px;
+  min-width: 0;
+  font-size: clamp(15px, 2.6vw, 17px);
+  /* Thai tone marks and vowel clusters need extra vertical room. */
+  line-height: 1.8;
+  color: var(--ink);
+  text-align: left;
+}
+
+.student-name {
+  font-family: "Noto Sans Thai", "IBM Plex Sans Thai", "Inter",
+    ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.8;
+  padding-bottom: 0.04em;
+  overflow-wrap: anywhere;
+}
+
+.student-sep {
+  flex: none;
+  color: var(--faint);
+}
+
+.student-id {
+  flex: none;
+  font-size: 0.92em;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--accent-ink);
+}
+
+.reqs-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+  min-width: 0;
+}
+
+.reqs-count {
+  flex: none;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.req-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+  gap: 0 clamp(14px, 2.4vw, 26px);
+  margin-top: 9px;
+  min-width: 0;
+}
+
+.req {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px 8px;
+  min-width: 0;
+  padding: 6px 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.req.is-ok {
+  color: var(--ink);
+}
+
+.req-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.req .dot {
+  flex: none;
+}
+
+.req-detail {
+  margin-left: auto;
+  min-width: 0;
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+  color: var(--faint);
+  text-align: right;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* ---------- surfaces ---------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.card-quiet {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.balance-card {
+  margin-top: clamp(20px, 3.4vw, 34px);
+  padding: var(--pad-card);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.hair {
+  height: 1px;
+  background: var(--line);
+  border: 0;
+  margin: clamp(16px, 2.4vw, 22px) 0;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+  gap: 14px 28px;
+}
+
+.meta-item {
+  min-width: 0;
+}
+
+.meta-value {
+  font-size: 12.5px;
+  line-height: 1.55;
+  margin-top: 2px;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* ---------- actions: single column until 761px ---------- */
+
+.actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(14px, 2vw, 20px);
+  margin-top: clamp(14px, 2vw, 20px);
+}
+
+.action {
+  padding: var(--pad-card);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.action-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.action-body {
+  display: block;
+  margin-top: clamp(12px, 1.8vw, 18px);
+  min-width: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- brand mark ---------- */
+
+.mark {
+  width: 26px;
+  height: 26px;
+  border-radius: 3px;
+  border: 1px solid rgba(28, 107, 77, 0.35);
+  background: var(--accent-soft);
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+
+.mark::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 1px;
+  background: var(--accent);
+}
+
+/* ---------- wallet chip ---------- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  padding: 4px 11px;
+  font-size: 12px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  max-width: 100%;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  flex: none;
+}
+
+.dot-muted {
+  background: var(--faint);
+}
+
+.dot-error {
+  background: var(--danger);
+}
+
+.dot-live {
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* ---------- buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+  border-radius: var(--radius);
+  padding: 11px 18px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 160ms ease, border-color 160ms ease,
+    color 160ms ease, box-shadow 160ms ease, transform 120ms ease;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--accent-ink);
+  border-color: var(--accent-ink);
+  color: #ffffff;
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 2px;
+}
+
+/* Washed-out look only when genuinely unavailable. */
+.btn:disabled {
+  background: var(--paper-deep);
+  border-color: var(--line-strong);
+  color: #8f938a;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+/* Clear outlined ghost action with readable dark text. */
+.btn-ghost {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: var(--paper);
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.btn-ghost:disabled {
+  background: var(--paper-deep);
+  border-color: var(--line-strong);
+  color: #8f938a;
+}
+
+.btn-sm {
+  width: auto;
+  padding: 7px 14px;
+  font-size: 11px;
+  letter-spacing: 0.09em;
+}
+
+.btn-full {
+  margin-top: clamp(12px, 1.8vw, 16px);
+}
+
+.link-btn {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.link-btn:hover:not(:disabled) {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.link-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.link-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------- balance figure ---------- */
+
+.balance {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: clamp(8px, 1.4vw, 14px);
+  min-width: 0;
+}
+
+.balance-figure {
+  font-size: clamp(28px, 5.4vw, 42px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.unit {
+  font-size: 10.5px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+  flex: none;
+  margin-bottom: 0.42em;
+}
+
+/* ---------- amount field ---------- */
+
+.amount-shell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--paper);
+  padding: 9px 12px;
+  transition: border-color 160ms ease, background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.amount-shell:focus-within {
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.amount-shell.is-disabled {
+  background: #f4f3ee;
+  border-color: var(--line);
+}
+
+.amount-shell.is-disabled .field,
+.amount-shell.is-disabled .unit {
+  opacity: 0.6;
+}
+
+.field {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  padding: 2px 0;
+  font-size: clamp(16px, 2.2vw, 19px);
+  line-height: 1.4;
+  color: var(--ink);
+  outline: none;
+}
+
+.field::placeholder {
+  color: var(--faint);
+}
+
+.field:disabled {
+  cursor: not-allowed;
+}
+
+/* ---------- notice ---------- */
+
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 11px 13px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  margin-top: clamp(14px, 2vw, 20px);
+  overflow-wrap: anywhere;
+}
+
+.notice-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.notice .dot {
+  margin-top: 0.45em;
+}
+
+.notice-error {
+  border-left-color: var(--danger);
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+/* ---------- activity ---------- */
+
+.activity {
+  margin-top: clamp(26px, 4vw, 42px);
+}
+
+.activity-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.activity-count {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--faint);
+  flex: none;
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  min-width: 0;
+}
+
+.row:first-child {
+  border-top: 0;
+}
+
+.row-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.row-main {
+  min-width: 0;
+}
+
+.row-left .dot {
+  margin-top: 7px;
+}
+
+.row-kind {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--muted);
+}
+
+.row-text {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.row-right {
+  flex: 0 0 auto;
+  text-align: right;
+}
+
+.row-status {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--faint);
+}
+
+.row-time {
+  font-size: 10px;
+  color: var(--faint);
+  margin-top: 3px;
+}
+
+.empty {
+  padding: 20px 0;
+}
+
+/* ---------- footer ---------- */
+
+.foot {
+  margin-top: clamp(28px, 4vw, 44px);
+  padding-top: clamp(16px, 2.4vw, 22px);
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+
+.foot-signatures {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+/* Thai script must not inherit uppercase tracking from .label. */
+.foot-student {
+  flex: none;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.8;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+/* ---------- states ---------- */
+
+.skeleton {
+  display: inline-block;
+  width: min(120px, 40vw);
+  height: 0.66em;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #eceae2 25%, #f4f2ec 50%, #eceae2 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+  vertical-align: middle;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-up {
+  animation: fadeUp 240ms ease both;
+}
+
+.config-card {
+  width: 100%;
+  max-width: 440px;
+  padding: var(--pad-card);
+}
+
+.config-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.config-text {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+/* ---------- responsive ---------- */
+
+/* Narrow panes: keep everything in one comfortable column. */
+@media (max-width: 480px) {
+  .head {
+    align-items: flex-start;
+  }
+
+  .wallet {
+    align-items: flex-start;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .wallet-links {
+    justify-content: flex-start;
+  }
+
+  .balance {
+    align-items: baseline;
+  }
+
+  .row {
+    gap: 10px;
+  }
+
+  .ident-row {
+    align-items: flex-start;
+  }
+
+  .req-detail {
+    margin-left: 0;
+    text-align: left;
+    width: 100%;
+  }
+}
+
+/* Side-by-side action panels only when there is real room. */
+@media (min-width: 761px) {
+  .actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up,
+  .skeleton {
+    animation: none;
+  }
+}
